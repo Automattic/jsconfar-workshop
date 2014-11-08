@@ -15,17 +15,16 @@ WordPress.org).
   connect out application with services.
 
   a. Create/grab a WordPress service
-  
+
   b. Create a Developer WordPress.com application
-  
-  c. Make a really simple web server with express.js
-  
+
+  c. [Make a really simple web server with express.js](./module-01/c/Readme.md)
+
   d. Add `node-wpcom-oauth` dependency
-  
+
   f. Create routes to run oauth steps
-  
+
   e. Add `wpcom.js` module, create a simple route to get user info
-  
 
 2. Job queue
 
