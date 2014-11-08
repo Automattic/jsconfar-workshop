@@ -1,7 +1,6 @@
-Module 01
-=========
+### Module 01
 
-# Make a really simple web server with express.js
+## c - Web server with express.js
 
 1. Install `npm`
 
