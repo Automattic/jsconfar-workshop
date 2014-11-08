@@ -14,5 +14,9 @@
 > npm install
 ```
 
+### Resources
+
+[How to install npm](http://blog.npmjs.org/post/85484771375/how-to-install-npm)
+
 ------------------------
 << [Prev](../../Readme.md) | [Next ](../../Readme.md) >> | [# summary](../../Readme.md#modules)
