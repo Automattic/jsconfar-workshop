@@ -14,4 +14,4 @@
 > npm install
 ```
 
-Back to [summary](../../Readme.md)
+Back to [summary](../../Readme.md#modules)
