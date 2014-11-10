@@ -1,7 +1,9 @@
+![http://www.jsconfar.com](https://cldup.com/AKtnDKavB0.png)
+
 jsconfar-workshop
 =================
 
-Workshop repository for jsconfar.com - Nov 28, 2014
+Workshop repository for [jsconfar.com](http://www.jsconfar.com) - Nov 28, 2014
 Let's create an application to administer WordPress services. The source of
 these services can reside in WordPress.com or a WordPress installacion (aka
 WordPress.org).
