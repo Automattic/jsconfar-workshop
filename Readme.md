@@ -34,6 +34,5 @@ WordPress.org).
 3. Store Data
 
   We store to data from WordPress services (throught of kue) in our local dB.
-  We use `mydb` modules
 
 4. Diff - Event emission
