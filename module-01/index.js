@@ -6,8 +6,14 @@
 var express = require('express');
 var app = express();
 
+// jade templates folder
+app.set('views', __dirname + '/views');
+
+// set jade rendering engine
+app.set('view engine', 'jade');
+
 app.get('/', function (req, res) {
-  res.send('Hello World!');
+  res.render('index');
 });
 
 var server = app.listen(3000, function () {
