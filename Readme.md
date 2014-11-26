@@ -4,16 +4,18 @@ jsconfar-workshop
 =================
 
 Workshop repository for [jsconfar.com](http://www.jsconfar.com) - Nov 28, 2014
-Let's create an application to administer WordPress services. The source of
-these services can reside in WordPress.com or a WordPress installacion (aka
-WordPress.org).
+
+# Before to start
+
+To expedite the workshop would be ideal to try to have some tools installed on
+our system.
 
 # Modules
 
-1. Services Connect
+1. Simple server-side application
 
-  We create a nodeijs application to connect it with WordPress.
-  We use `node-wpcom-oauth` to get oauth authorization and use `wpcom.js` to
+  We create a nodejs application to connect with WordPress.
+  We use `node-wpcom-oauth` to get oauth authorization and then use `wpcom.js` to
   connect out application with services.
 
   a. Create/grab a WordPress service
@@ -28,13 +30,8 @@ WordPress.org).
 
   e. Add `wpcom.js` module, create a simple route to get user info
 
-2. Job queue
+2. Hitting from the client
 
-  The idea is can make job queued of WordPress requests, so we'll update our
-  data with the real data in WordPress servers.
+  Let's get resources 
 
-3. Store Data
-
-  We store to data from WordPress services (throught of kue) in our local dB.
-
-4. Diff - Event emission
+3. Event emission
