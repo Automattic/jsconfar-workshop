@@ -1,6 +1,30 @@
 body {
   margin: 0;
-  padding: 0;
+  padding: 10px 80px;
   font: 14px "Helvetica Nueue", "Lucida Grande", Arial, sans-serif;
-  background-color: #afa;
+  background-color: #fffffa;
+}
+
+#posts-list {
+  max-width: 500px;
+  width: 100%;
+}
+
+#posts-list ul {
+  list-style: none;
+  margin: 0;
+}
+
+#posts-list ul li {
+  list-style: none;
+  border-bottom: 1px solid #aaa;
+  margin-bottom: 30px
+}
+
+#posts-list ul li h3 {
+  color: #060;
+}
+
+#posts-list ul li p {
+  color: #888;
 }
