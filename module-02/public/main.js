@@ -17,7 +17,6 @@ wpcom
   var markup = '<ul>';
   for (var i = 0; i < data.posts.length; i++) {
     var p = data.posts[i];
-    console.log('-> p -> ', p);
 
     markup += '<li>';
     markup += '<h3>' + p.title + '</h3>';
@@ -33,6 +32,10 @@ wpcom
     markup += '<span id="post-views-count">-</span>';
     markup += '</li>';
 
+    markup += '<li>';
+    markup += '<a href="#" onclick="addComment(' + p.ID + ');">Add comment</a>';
+    markup += '</li>';
+
     markup += '</ul>';
 
     markup += '</li>';
@@ -43,3 +46,13 @@ wpcom
   var postsContainer = document.getElementById('posts-list');
   postsContainer.innerHTML = markup;
 });
+
+
+/**
+ * Add a comment to given post
+ *
+ * @api private
+ */
+
+function addComment(post_id){
+}
