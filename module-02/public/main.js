@@ -74,4 +74,5 @@ function addComment(post_id){
 postComment.addEventListener('submit', function(e){
   e.preventDefault();
   var text = e.target.children[0].value;
+  var post_id = this.parentElement.getAttribute('id').substr(5);
 });
