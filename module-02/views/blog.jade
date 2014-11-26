@@ -3,7 +3,10 @@ html(lang="en")
   head
     title Blog.ar
     link(href="main.css", media="all", rel="stylesheet", type="text/css")
-  body
+    script(src="wpcom.js")
+  body(data-token= token.access_token, data-id= token.blog_id)
     h1
       a(href= blog.URL)= blog.name
     p.descrption= blog.description
+    #posts-list
+    script(src="main.js")
