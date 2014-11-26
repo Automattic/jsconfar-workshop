@@ -2,13 +2,19 @@
 
 # [c] Web server with express.js
 
-1. Install `npm`
+### 1 - Install `npm`
 
-2. Create `package.json`
+### 2 - Create `package.json`
 
-3. Add `express.js` dependency
+### 3 Add `express.js`
 
-4. Install dependencies
+* Add module dependency in package.json file
+
+```cli
+npm install express --save
+```
+
+* Update dependencies
 
 ```cli
 > npm install
