@@ -9,10 +9,11 @@ var blog_id = document.body.dataset.id;
 // Create wpcom instance
 var wpcom = WPCOM(token);
 
+// site instance
+var site = wpcom.site(blog_id);
+
 // get posts list
-wpcom
-.site(blog_id)
-.postsList(function(err, data){
+site.postsList(function(err, data){
   if (err) {
     return console.error(err);
   }
@@ -62,7 +63,7 @@ function addComment(post_id){
   postComment.style.display = 'block';
 
   // focus
-  postComment.children[0].focus();
+  postComment.children[0].children[0].focus();
 }
 
 /**
@@ -75,4 +76,16 @@ postComment.addEventListener('submit', function(e){
   e.preventDefault();
   var text = e.target.children[0].value;
   var post_id = this.parentElement.getAttribute('id').substr(5);
+
+  postComment.style.display = 'none';
+  e.target.children[0].value = '';
+
+  site
+  .post(post_id)
+  .comment()
+  .add(text, function(err, data){
+    if (err) {
+      return console.error(err);
+    }
+  });
 });
