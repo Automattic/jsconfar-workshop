@@ -37,18 +37,39 @@ var wp_app = {
 // Open athentication instance
 var oauth = OAuth(wp_app);
 
+// token
+var token;
+
 /**
  * Routes
  */
 
 app.get('/', function (req, res) {
-  var url = oauth.urlToConnect('jsconfar.com');
-  res.render('index', { url: url });
+  if (token) {
+    res.send(token);
+  } else {
+    var url = oauth.urlToConnect();
+    res.render('index', { url: url });
+  }
 });
 
 // get code from WP.com response
 app.get('/connect', function (req, res) {
   var code = req.query.code;
+
+  // set oauth code ...
+  oauth.code(code);
+
+   // ... and negotiate by access token
+   oauth.requestAccessToken(function(err, data){
+     if (err && err.descrption) {
+        return res.send(err.descrption);
+     }
+
+     // set access token in global var
+     token = data;
+     res.redirect('/');
+   });
 });
 
 var server = app.listen(3000, function () {
