@@ -30,7 +30,7 @@ var wp_app = {
   "client_id": "38002",
   "client_secret": "jNzfpqPY8tUPKK2oQQRvCvWpzAowIY3O2TadIHRkmx47Kbe0pfo7Jb4FKNbKjKh8",
   "url":  {
-    "redirect": "https://jsconfar.test/connect"
+    "redirect": "http://jsconfar.test:3000/connect"
   }
 };
 
@@ -42,7 +42,13 @@ var oauth = OAuth(wp_app);
  */
 
 app.get('/', function (req, res) {
-  res.render('index');
+  var url = oauth.urlToConnect('jsconfar.com');
+  res.render('index', { url: url });
+});
+
+// get code from WP.com response
+app.get('/connect', function (req, res) {
+  var code = req.query.code;
 });
 
 var server = app.listen(3000, function () {
