@@ -60,4 +60,18 @@ function addComment(post_id){
   var el = document.getElementById('post-' + post_id);
   el.appendChild(postComment);
   postComment.style.display = 'block';
+
+  // focus
+  postComment.children[0].focus();
 }
+
+/**
+ * Bind `submit` event
+ *
+ * @api private
+ */
+
+postComment.addEventListener('submit', function(e){
+  e.preventDefault();
+  var text = e.target.children[0].value;
+});
