@@ -6,6 +6,9 @@
 var express = require('express');
 var app = express();
 
+// public path
+app.use(express.static(__dirname + '/public'));
+
 // jade templates folder
 app.set('views', __dirname + '/views');
 
