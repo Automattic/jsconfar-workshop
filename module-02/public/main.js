@@ -17,9 +17,24 @@ wpcom
   var markup = '<ul>';
   for (var i = 0; i < data.posts.length; i++) {
     var p = data.posts[i];
+    console.log('-> p -> ', p);
+
     markup += '<li>';
     markup += '<h3>' + p.title + '</h3>';
     markup += '<p>' + p.excerpt + '</p>';
+
+
+    markup += '<ul>';
+    markup += '<li>Comments: ';
+    markup += '<span id="post-comments-count">' + p.comment_count + '</span>';
+    markup += '</li>';
+
+    markup += '<li>Views: ';
+    markup += '<span id="post-views-count">-</span>';
+    markup += '</li>';
+
+    markup += '</ul>';
+
     markup += '</li>';
   }
 
