@@ -22,7 +22,6 @@ app.set('views', __dirname + '/views');
 // set jade rendering engine
 app.set('view engine', 'jade');
 
-
 /**
  * WP.com app settings
  */
