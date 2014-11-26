@@ -24,6 +24,7 @@ h1 a {
 #posts-list ul li {
   list-style: none;
   margin-bottom: 30px;
+  position: relative;
 }
 
 #posts-list ul li h3 {
@@ -51,8 +52,20 @@ h1 a {
   color: #600;
 }
 
-#post-comment,
+#post-comment {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 230px;
+  padding: 10px;
+  background-color: rgba(100, 255, 100, 0.2);
+  border-radius: 5px;
+  text-align: center;
+}
+
 #post-comment textarea {
+  width: 200px;
   height: 50px;
 }
 

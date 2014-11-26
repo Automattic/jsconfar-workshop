@@ -1,4 +1,7 @@
 
+// post comment element
+var postComment = document.getElementById('post-comment');
+
 // get token and blog ig from body attribute
 var token = document.body.dataset.token;
 var blog_id = document.body.dataset.id;
@@ -18,7 +21,7 @@ wpcom
   for (var i = 0; i < data.posts.length; i++) {
     var p = data.posts[i];
 
-    markup += '<li>';
+    markup += '<li id="post-' + p.ID + '">';
     markup += '<h3>' + p.title + '</h3>';
     markup += '<p>' + p.excerpt + '</p>';
 
@@ -47,7 +50,6 @@ wpcom
   postsContainer.innerHTML = markup;
 });
 
-
 /**
  * Add a comment to given post
  *
@@ -55,4 +57,7 @@ wpcom
  */
 
 function addComment(post_id){
+  var el = document.getElementById('post-' + post_id);
+  el.appendChild(postComment);
+  postComment.style.display = 'block';
 }
