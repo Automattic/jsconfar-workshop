@@ -5,6 +5,7 @@
 
 var express = require('express');
 var OAuth = require('wpcom-oauth');
+var WPCom = require('wpcom');
 
 /**
  * Application
@@ -46,7 +47,14 @@ var token;
 
 app.get('/', function (req, res) {
   if (token) {
-    res.send(token);
+    // create wpcom instance
+    var wpcom = WPCom(token.access_token);
+
+    // get posts list
+    wpcom.site(token.blog_id)
+    .get(function(err, blog){
+      res.render('blog', { blog: blog });
+    });
   } else {
     var url = oauth.urlToConnect();
     res.render('index', { url: url });
