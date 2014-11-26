@@ -15,6 +15,7 @@ var app = express();
 
 // public path
 app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/node_modules/wpcom/dist'));
 
 // jade templates folder
 app.set('views', __dirname + '/views');
@@ -45,6 +46,7 @@ var token;
  */
 
 app.get('/', function (req, res) {
+
   if (token) {
     // create wpcom instance
     var wpcom = WPCom(token.access_token);
@@ -52,7 +54,7 @@ app.get('/', function (req, res) {
     // get posts list
     wpcom.site(token.blog_id)
     .get(function(err, blog){
-      res.render('blog', { blog: blog });
+      res.render('blog', { token: token, blog: blog });
     });
   } else {
     var url = oauth.urlToConnect();
