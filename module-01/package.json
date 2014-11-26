@@ -12,7 +12,8 @@
   "dependencies": {
     "express": "^4.10.4",
     "jade": "^1.7.0",
-    "wpcom-oauth": "^0.3.2"
+    "wpcom-oauth": "^0.3.2",
+    "wpcom": "2.6.0"
   },
   "devDependencies": {},
   "repository": {},
