@@ -8,9 +8,11 @@
     "jsconfar",
     "WordPress",
     "Automattic",
-    "javascript"`
+    "javascript"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "express": "4.10.4"
+  },
   "devDependencies": {},
   "repository": {},
   "license": "MIT"
