@@ -50,3 +50,13 @@ h1 a {
 #posts-list ul li ul li span {
   color: #600;
 }
+
+#post-comment,
+#post-comment textarea {
+  height: 50px;
+}
+
+#post-comment button {
+  vertical-align: top;
+  margin: 0 0 0 5px;
+}
