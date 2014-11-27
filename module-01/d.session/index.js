@@ -5,6 +5,7 @@
 
 var express = require('express');
 var session = require('express-session');
+var cookieParser = require('cookie-parser');
 var OAuth = require('wpcom-oauth');
 
 /**
@@ -23,7 +24,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 
 // session
-app.use(cookieParser('keyboard cat'));
+app.use(cookieParser('jsconfar'));
 app.use(session());
 
 /**
@@ -43,8 +44,12 @@ var oauth = OAuth(wp_app);
 
 // Main route
 app.get('/', function (req, res) {
-  var url = oauth.urlToConnect();
-  res.render('index', { url: url });
+  if (!req.session.token) {
+    var url = oauth.urlToConnect();
+    res.render('index', { url: url });
+  } else {
+    res.send(req.session.token);
+  }
 });
 
 // Get code to WP.com
@@ -60,7 +65,10 @@ app.get('/connect', function (req, res) {
         return res.send(err.descrption);
      }
 
-     res.send(data);
+     // store token in current user session
+     req.session.token = data.access_token;
+
+     res.redirect('/');
    });
 });
 
