@@ -1,0 +1,21 @@
+{
+  "name": "jsconf-workshop-app",
+  "version": "0.0.1",
+  "description": "A nice app used in jsconfar workshop!",
+  "author": "Damian Suarez <rdsuarez@gmail.com>",
+  "keywords": [
+    "jsconfar",
+    "WordPress",
+    "Automattic",
+    "javascript"
+  ],
+  "dependencies": {
+    "express": "^4.10.4",
+    "jade": "^1.7.0",
+    "wpcom-oauth": "^0.3.2",
+    "wpcom": "2.6.0"
+  },
+  "devDependencies": {},
+  "repository": {},
+  "license": "MIT"
+}

@@ -23,7 +23,7 @@ site.postsList(function(err, data){
     var p = data.posts[i];
 
     markup += '<li id="post-' + p.ID + '">';
-    markup += '<h3><a href="/post/' + p.ID + '">' + p.title + '</a></h3>';
+    markup += '<h3><a href="#" onclick="loadPost(' + p.ID + ');">' + p.title + '</a></h3>';
     markup += '<p>' + p.excerpt + '</p>';
 
 
@@ -89,3 +89,18 @@ postComment.addEventListener('submit', function(e){
     }
   });
 });
+
+/**
+ * Load post using given post ID
+ *
+ * @param {String} post_id
+ * @api private
+ */
+
+function loadPost(post_id){
+  site
+  .post(post_id)
+  .get(function(err, post){
+    console.log('-> post -> ', post);
+  });
+}
