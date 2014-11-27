@@ -8,7 +8,7 @@
 
 ### 3 Add `express.js`
 
-* Add module dependency in package.json file
+* Add module dependencies in package.json file
 
 ```cli
 npm install express --save
