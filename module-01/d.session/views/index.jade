@@ -5,4 +5,7 @@ html(lang="en")
     link(href="main.css", media="all", rel="stylesheet", type="text/css")
   body
     h1 Wellcome to the Jungle!
-    a(href= url) Connect with WordPress
+    if (logged)
+      p Logged
+    else
+      a(href= url) Connect with WordPress

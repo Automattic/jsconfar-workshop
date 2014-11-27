@@ -44,12 +44,8 @@ var oauth = OAuth(wp_app);
 
 // Main route
 app.get('/', function (req, res) {
-  if (!req.session.token) {
     var url = oauth.urlToConnect();
-    res.render('index', { url: url });
-  } else {
-    res.send(req.session.token);
-  }
+    res.render('index', { url: url, logged: !!req.session.token });
 });
 
 // Get code to WP.com
