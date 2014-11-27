@@ -7,6 +7,7 @@ var express = require('express');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var OAuth = require('wpcom-oauth');
+var wpcom = require('wpcom');
 
 /**
  * Application
@@ -44,8 +45,8 @@ var oauth = OAuth(wp_app);
 
 // Main route
 app.get('/', function (req, res) {
-    var url = oauth.urlToConnect();
-    res.render('index', { url: url, logged: !!req.session.token });
+  var url = oauth.urlToConnect();
+  res.render('index', { url: url, logged: !!req.session.token });
 });
 
 // Get code to WP.com
@@ -55,17 +56,17 @@ app.get('/connect', function (req, res) {
   // set oauth code ...
   oauth.code(code);
 
-   // ... and negotiate by access token
-   oauth.requestAccessToken(function(err, data){
-     if (err && err.descrption) {
-        return res.send(err.descrption);
-     }
+  // ... and negotiate by access token
+  oauth.requestAccessToken(function(err, data){
+   if (err && err.descrption) {
+      return res.send(err.descrption);
+   }
 
-     // store token in current user session
-     req.session.token = data.access_token;
+   // store token in current user session
+   req.session.token = data.access_token;
 
-     res.redirect('/');
-   });
+   res.redirect('/');
+  });
 });
 
 // Start web server
