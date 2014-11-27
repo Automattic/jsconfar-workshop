@@ -21,9 +21,8 @@ app.set('views', __dirname + '/views');
 // set jade rendering engine
 app.set('view engine', 'jade');
 
-
 /**
- * WP.com app settings
+ * WP app settings
  */
 
 var wp_app = {
@@ -37,23 +36,13 @@ var wp_app = {
 // Open athentication instance
 var oauth = OAuth(wp_app);
 
-// token
-var token;
-
-/**
- * Routes
- */
-
+// Main route
 app.get('/', function (req, res) {
-  if (token) {
-    res.send(token);
-  } else {
-    var url = oauth.urlToConnect();
-    res.render('index', { url: url });
-  }
+  var url = oauth.urlToConnect();
+  res.render('index', { url: url });
 });
 
-// get code from WP.com response
+// Get code to WP.com
 app.get('/connect', function (req, res) {
   var code = req.query.code;
 
@@ -66,12 +55,11 @@ app.get('/connect', function (req, res) {
         return res.send(err.descrption);
      }
 
-     // set access token in global var
-     token = data;
-     res.redirect('/');
+     res.send(data);
    });
 });
 
+// Start web server
 var server = app.listen(3000, function () {
   var host = server.address().address;
   var port = server.address().port;
