@@ -23,7 +23,7 @@ site.postsList(function(err, data){
     var p = data.posts[i];
 
     markup += '<li id="post-' + p.ID + '">';
-    markup += '<h3>' + p.title + '</h3>';
+    markup += '<h3><a href="/post/' + p.ID + '">' + p.title + '</a></h3>';
     markup += '<p>' + p.excerpt + '</p>';
 
 
