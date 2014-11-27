@@ -26,6 +26,8 @@ npm install express --save
 > npm install jade --save
 ```
 
+### Implement OAuth connection
+
 ### Resources
 
 [How to install npm](http://blog.npmjs.org/post/85484771375/how-to-install-npm)
