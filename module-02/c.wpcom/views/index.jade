@@ -3,13 +3,17 @@ html(lang="en")
   head
     title Blog.ar
     link(href="main.css", media="all", rel="stylesheet", type="text/css")
-    script(src="app.js")
   body
     h1 Wellcome to the Jungle!
+    #post-comment
+      form(action="#", method="POST")
+        textarea
+        button Send
     if (site)
       h2
         a(href=site.URL)= site.name
       p= site.description
+      .posts-list
     else
       a(href= url) Connect with WordPress
-
+    script(src="app.js")

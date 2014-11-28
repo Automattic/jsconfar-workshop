@@ -1,0 +1,75 @@
+body {
+  margin: 0;
+  padding: 10px 80px;
+  font: 14px "Helvetica Nueue", "Lucida Grande", Arial, sans-serif;
+  background-color: #fffffa;
+}
+
+h1 a {
+  color: #0a0;
+}
+
+.posts-list {
+  margin-top: 80px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.posts-list ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.posts-list ul li {
+  list-style: none;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.posts-list ul li h3 {
+  color: #086;
+}
+
+.posts-list ul li p {
+  color: #787;
+}
+
+.posts-list ul li ul {
+  padding: 5px 0;
+  border-bottom: 1px solid #aaa;
+}
+
+.posts-list ul li ul li {
+  color: #777;
+  font-size: 12px;
+  margin: 0 20px 0 0;
+  border: 0;
+  display: inline-block;
+}
+
+.posts-list ul li ul li span {
+  color: #600;
+}
+
+#post-comment {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 230px;
+  padding: 10px;
+  background-color: rgba(100, 255, 100, 0.2);
+  border-radius: 5px;
+  text-align: center;
+}
+
+#post-comment textarea {
+  width: 200px;
+  height: 50px;
+}
+
+#post-comment button {
+  vertical-align: top;
+  margin: 0 0 0 5px;
+}
