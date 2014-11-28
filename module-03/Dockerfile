@@ -20,15 +20,24 @@ RUN \
   wget http://download.redis.io/releases/redis-2.8.9.tar.gz \
   tar xzf redis-2.8.9.tar.gz \
   cd redis-2.8.9 \
+  cd deps
+  make hiredis jemalloc linenoise lua
+  cd ..
   make \
-  make test \
   sudo make install \
   cd utils \
   sudo ./install_server.s
 
+# Install node
+curl -sL https://deb.nodesource.com/setup | sudo bash -
+sudo apt-get install -y nodejs
+
 # Start background services
 RUN /etc/init.d/mysql start
 RUN service redis_6379 start
+
+# Clone repo and install dependencies
+# TODO
 
 # Expose ports for the PHP and Node.js servers
 EXPOSE 80

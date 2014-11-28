@@ -456,7 +456,95 @@ script(src="main.js")
 ```
 
 ## Implementing the action listeners
-TODO
+
+To make the new post event work, we actually have to do 2 things. We need to make sure that the post we just received is in fact a new post, because the event is emitted for republishes too (updating an existing post). If the post already exists, let's just rather update the content on the existing post.
+
+The code looks something like this:
+```js
+...
+var markup = '<ul id="posts">';
+for (var i = 0; i < data.posts.length; i++) {
+  var p = data.posts[i];
+
+  markup += '<li id="post-' + p.ID + '">';
+  markup += '<div class="general">';
+  markup += '<h3>' + p.title + '</h3>';
+  markup += '<p>' + p.excerpt + '</p>';
+  markup += '</div>';
+  ...
+
+socket.on('new post', function(data) {
+  var p = data.post;
+  var posts = document.getElementById('posts');
+  var elem =  document.getElementById('post-' + data.id);
+
+  if (elem) {
+    var generalInfo = elem.querySelector('.general');
+    var markup = '<h3>' + p.post_title + '</h3>';
+    markup += '<p>' + p.post_content + '</p>';
+    generalInfo.innerHTML = markup;
+
+    var commentsCount = elem.querySelector('.post-comments-count');
+    commentsCount.innerHTML = p.comment_count;
+
+    return;
+  }
+
+  var postEl = document.createElement('li');
+  postEl.id = 'post-' + p.ID;
+  var markup = '<h3>' + p.post_title + '</h3>';
+  markup += '<p>' + p.post_content + '</p>';
+
+
+  markup += '<ul>';
+  markup += '<li>Comments: ';
+  markup += '<span id="post-comments-count">' + p.comment_count + '</span>';
+  markup += '</li>';
+
+  markup += '<li>Views: ';
+  markup += '<span id="post-views-count">-</span>';
+  markup += '</li>';
+
+  markup += '<li>';
+  markup += '<a href="#" onclick="addComment(' + p.ID + ');">Add comment</a>';
+  markup += '</li>';
+
+  markup += '</ul>';
+
+  postEl.innerHTML = markup;
+  posts.appendChild(postEl);
+});
+
+```
+
+We then implement a simple handler that will increment the comment counter whenever a post gets a new comment:
+
+```js
+socket.on('new comment', function(data) {
+  var post =  document.getElementById('post-' + data.comment.comment_post_ID);
+  var commentsCount = post.querySelector('.post-comments-count');
+  var num = Number(commentsCount.innerHTML);
+  commentsCount.innerHTML = num + 1;
+});
+
+```
+
+Last but not least we add logic to increment a views counter, replacing any existing value with what we get from the event payload:
+
+```js
+socket.on('post view', function(data) {
+  var post =  document.getElementById('post-' + data.id);
+  var viewsCount = post.querySelector('.post-views-count');
+  viewsCount.innerHTML = data.count;
+});
+```
 
 # Deploying
 
+TODO
+
+## Create a new registered application
+
+Happens from [here](https://developer.wordpress.com/apps).
+
+In the redirect URL field fill in the URL given to you by deis, followed by `/connect`, which is the route for connecting to WordPress.com.

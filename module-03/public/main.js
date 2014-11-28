@@ -18,22 +18,24 @@ site.postsList(function(err, data){
     return console.error(err);
   }
 
-  var markup = '<ul>';
+  var markup = '<ul id="posts">';
   for (var i = 0; i < data.posts.length; i++) {
     var p = data.posts[i];
 
     markup += '<li id="post-' + p.ID + '">';
+    markup += '<div class="general">';
     markup += '<h3>' + p.title + '</h3>';
     markup += '<p>' + p.excerpt + '</p>';
+    markup += '</div>';
 
 
     markup += '<ul>';
     markup += '<li>Comments: ';
-    markup += '<span id="post-comments-count">' + p.comment_count + '</span>';
+    markup += '<span class="post-comments-count">' + p.comment_count + '</span>';
     markup += '</li>';
 
     markup += '<li>Views: ';
-    markup += '<span id="post-views-count">-</span>';
+    markup += '<span class="post-views-count">-</span>';
     markup += '</li>';
 
     markup += '<li>';
@@ -92,13 +94,56 @@ postComment.addEventListener('submit', function(e){
 
 var socket = io('ws://localhost:3000');
 socket.on('new post', function(data) {
-  console.log(data);
+  var p = data.post;
+  var posts = document.getElementById('posts');
+  var elem =  document.getElementById('post-' + data.id);
+
+  if (elem) {
+    var generalInfo = elem.querySelector('.general');
+    var markup = '<h3>' + p.post_title + '</h3>';
+    markup += '<p>' + p.post_content + '</p>';
+    generalInfo.innerHTML = markup;
+
+    var commentsCount = elem.querySelector('.post-comments-count');
+    commentsCount.innerHTML = p.comment_count;
+
+    return;
+  }
+
+  var postEl = document.createElement('li');
+  postEl.id = 'post-' + p.ID;
+  var markup = '<h3>' + p.post_title + '</h3>';
+  markup += '<p>' + p.post_content + '</p>';
+
+
+  markup += '<ul>';
+  markup += '<li>Comments: ';
+  markup += '<span id="post-comments-count">' + p.comment_count + '</span>';
+  markup += '</li>';
+
+  markup += '<li>Views: ';
+  markup += '<span id="post-views-count">-</span>';
+  markup += '</li>';
+
+  markup += '<li>';
+  markup += '<a href="#" onclick="addComment(' + p.ID + ');">Add comment</a>';
+  markup += '</li>';
+
+  markup += '</ul>';
+
+  postEl.innerHTML = markup;
+  posts.appendChild(postEl);
 });
 
 socket.on('new comment', function(data) {
-  console.log(data);
+  var post =  document.getElementById('post-' + data.comment.comment_post_ID);
+  var commentsCount = post.querySelector('.post-comments-count');
+  var num = Number(commentsCount.innerHTML);
+  commentsCount.innerHTML = num + 1;
 });
 
 socket.on('post view', function(data) {
-  console.log(data);
+  var post =  document.getElementById('post-' + data.id);
+  var viewsCount = post.querySelector('.post-views-count');
+  viewsCount.innerHTML = data.count;
 });
