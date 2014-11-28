@@ -1,0 +1,14 @@
+doctype html
+html(lang="en")
+  head
+    title Blog.ar
+    link(href="main.css", media="all", rel="stylesheet", type="text/css")
+  body
+    h1 Wellcome to the Jungle!
+    if (site)
+      h2
+        a(href=site.URL)= site.name
+      p= site.description
+    else
+      a(href= url) Connect with WordPress
+
