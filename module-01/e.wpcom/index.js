@@ -7,7 +7,7 @@ var express = require('express');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var OAuth = require('wpcom-oauth');
-var wpcom = require('wpcom');
+var WPCOM = require('wpcom');
 
 /**
  * Application
@@ -45,8 +45,21 @@ var oauth = OAuth(wp_app);
 
 // Main route
 app.get('/', function (req, res) {
-  var url = oauth.urlToConnect();
-  res.render('index', { url: url, logged: !!req.session.token });
+  if (req.session.token) {
+    var wpcom = WPCOM(req.session.token);
+
+    wpcom
+    .site(req.session.blog_id)
+    .get(function(err, site){
+      if (err) {
+        return res.send(err);
+      }
+      res.send(site);
+    });
+  } else {
+    var url = oauth.urlToConnect();
+    res.render('index', { url: url });
+  }
 });
 
 // Get code to WP.com
@@ -64,6 +77,7 @@ app.get('/connect', function (req, res) {
 
    // store token in current user session
    req.session.token = data.access_token;
+   req.session.blog_id = data.blog_id;
 
    res.redirect('/');
   });
