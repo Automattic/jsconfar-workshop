@@ -8,6 +8,8 @@ https://github.com/Homebrew/homebrew-php#installation
 - `brew tap homebrew/versions`  
 - `brew tap homebrew/homebrew-php`  
 
+For Windows you want to look at a Wamp setup, such as [this](http://www.wampserver.com/en/).
+
 ## Installing a fresh PHP version
 
 ```

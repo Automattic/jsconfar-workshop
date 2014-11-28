@@ -7,6 +7,7 @@ RUN apt-get update
 # Essentials
 RUN sudo apt-get install -y  software-properties-common python-software-properties
 RUN apt-get install -y wget
+RUN apt-get install -y git
 
 # Install PHP
 RUN add-apt-repository ppa:ondrej/php5
@@ -36,9 +37,15 @@ RUN sudo apt-get install -y nodejs
 RUN /etc/init.d/mysql start
 RUN service redis_6379 start
 
-# Clone repo and install dependencies
-# TODO
+# Clone repos
+RUN git clone http://gihub.com/wordpress/wordpress
+RUN git clone http://gihub.com/automattic/jsconfar-workshop
+
+# Install deps
+RUN cd jsconfar-workshop/module-03 && npm install
 
 # Expose ports for the PHP and Node.js servers
 EXPOSE 80
 EXPOSE 3000
+
+# Run
