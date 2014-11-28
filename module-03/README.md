@@ -543,6 +543,18 @@ socket.on('post view', function(data) {
 
 TODO
 
+We're going to be using docker. If you want to be using dacker locally, you need to install VirtualBox.
+
+Download the Docker installer from [here](https://github.com/boot2docker/osx-installer/releases/tag/v1.3.2).
+
+```
+boot2docker init
+boot2docker start
+$(boot2docker shellinit)
+```
+
+Remember to run what `boot2docker start` tells you to.
+
 ## Create a new registered application
 
 Happens from [here](https://developer.wordpress.com/apps).
