@@ -54,7 +54,7 @@ app.get('/', function (req, res) {
       if (err) {
         return res.send(err);
       }
-      res.send(site);
+      res.render('index', { site: site });
     });
   } else {
     var url = oauth.urlToConnect();

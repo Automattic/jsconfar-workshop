@@ -5,7 +5,10 @@ html(lang="en")
     link(href="main.css", media="all", rel="stylesheet", type="text/css")
   body
     h1 Wellcome to the Jungle!
-    if (logged)
-      p Logged
+    if (site)
+      h2
+        a(href=site.URL)= site.name
+      p= site.description
     else
       a(href= url) Connect with WordPress
+
